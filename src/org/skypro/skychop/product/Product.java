@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Product {
 
-    private String nameProduct;
-    private int priceOfProduct;
+    private final String nameProduct;
+    private final int priceOfProduct;
 
 
     public Product(String nameProduct, int priceOfProduct) {
@@ -22,17 +22,11 @@ public class Product {
         return nameProduct;
     }
 
-    //public void setNameProduct(String newNameProduct) {
-    //    nameProduct = newNameProduct;
-    //}
 
     public int getPriceOfProduct() {
         return priceOfProduct;
     }
 
-    //public void setPriceOfProduct(int newPriceOfProduct) {
-    //    priceOfProduct = newPriceOfProduct;
-    //}
 
     @Override
     public String toString() {
