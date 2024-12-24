@@ -2,7 +2,6 @@ package org.skypro.skychop.basket;
 
 import org.skypro.skychop.product.Product;
 
-
 public class ProductBasket {
 
 
@@ -12,7 +11,9 @@ public class ProductBasket {
 
     private static final int LENGTH = 5;
 
+
     public ProductBasket() {
+
         products = new Product[LENGTH];
         for (int i = 0; i < LENGTH; i++) {
             products[i] = null;
@@ -28,11 +29,16 @@ public class ProductBasket {
     }
 
     public static void printAllProductBasket() {
+        int CountSpecial = 0;
         for (Product product : products) {
             if (product == null) {
                 continue;
             }
             System.out.println(product);
+            if (product.isSpecial()) CountSpecial++;
+        }
+        if (CountSpecial != 0) {
+            System.out.println("Специальных товаров: " + CountSpecial);
         }
 
     }
@@ -70,4 +76,3 @@ public class ProductBasket {
 
 
 }
-
