@@ -2,35 +2,36 @@ package org.skypro.skychop.product;
 
 import java.util.Objects;
 
-public class Product {
+public abstract class Product {
 
-    private final String nameProduct;
-    private final int priceOfProduct;
+    final String nameProduct;
 
-
-    public Product(String nameProduct, int priceOfProduct) {
+    public Product(String nameProduct) {
 
         this.nameProduct = nameProduct;
-        this.priceOfProduct = priceOfProduct;
+
     }
 
     public Product() {
-        this("", 0);
+
+        this("");
     }
 
     public String getNameProduct() {
+
         return nameProduct;
     }
 
 
-    public int getPriceOfProduct() {
-        return priceOfProduct;
-    }
+    public abstract int getPriceOfProduct();
+
+    public abstract boolean isSpecial();
 
 
     @Override
     public String toString() {
-        return nameProduct + " " + ':' + " " + priceOfProduct + " рублей.";
+
+        return nameProduct;
     }
 
     @Override
@@ -38,12 +39,13 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return priceOfProduct == product.priceOfProduct && Objects.equals(nameProduct, product.nameProduct);
+        return Objects.equals(nameProduct, product.nameProduct);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nameProduct, priceOfProduct);
+        return Objects.hashCode(nameProduct);
     }
 }
+
 

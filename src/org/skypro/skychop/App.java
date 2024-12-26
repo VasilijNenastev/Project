@@ -1,7 +1,9 @@
 package org.skypro.skychop;
 
 import org.skypro.skychop.basket.ProductBasket;
-import org.skypro.skychop.product.Product;
+import org.skypro.skychop.product.DiscountedProduct;
+import org.skypro.skychop.product.FixPriceProduct;
+import org.skypro.skychop.product.SimpleProduct;
 
 public class App {
 
@@ -16,26 +18,26 @@ public class App {
 
 
             {
-                Product product1 = new Product("сахар", 350);
-                Product product2 = new Product("молоко", 200);
-                Product product3 = new Product("кофе", 400);
-                Product product4 = new Product("конфеты", 700);
-                Product product5 = new Product("колбаса", 600);
-                Product product6 = new Product("молоко", 100);
+                SimpleProduct product1 = new SimpleProduct("сахар", 350);
+                DiscountedProduct product2 = new DiscountedProduct("молоко", 200, 20);
+                FixPriceProduct product3 = new FixPriceProduct("кофе");
+                SimpleProduct product4 = new SimpleProduct("конфеты", 700);
+                SimpleProduct product5 = new SimpleProduct("колбаса", 600);
+                SimpleProduct product6 = new SimpleProduct("мясо", 2000);
 
                 ProductBasket productBasket = new ProductBasket();
-                productBasket.addProduct(product1);
-                productBasket.addProduct(product2);
-                productBasket.addProduct(product3);
-                productBasket.addProduct(product4);
-                productBasket.addProduct(product5);
-                productBasket.addProduct(product6);
+                ProductBasket.addProduct(product1);
+                ProductBasket.addProduct(product2);
+                ProductBasket.addProduct(product3);
+                ProductBasket.addProduct(product4);
+                ProductBasket.addProduct(product5);
+                ProductBasket.addProduct(product6);
 
 
             }
 
             System.out.println("=================================");
-            ProductBasket.addProduct(new Product());//Проверка на возможность добавить продукт
+            ProductBasket.addProduct(new SimpleProduct());//Проверка на возможность добавить продукт
             System.out.println("=================================");
             ProductBasket.basketEmpty();//Проверка не пуста ли корзина
             System.out.println("=================================");
@@ -52,7 +54,7 @@ public class App {
             System.out.println("В корзине:");
             ProductBasket.basketEmpty();
             ProductBasket.printAllProductBasket();
-            System.out.println("Итого:" + ProductBasket.totalPriceOfProduct() + " рублей.");//Стоимость пустой корзины
+            System.out.println("Итого: " + ProductBasket.totalPriceOfProduct() + " рублей.");//Стоимость пустой корзины
             System.out.println(ProductBasket.isHasProduct("колбаса"));//Поиск товара в пустой корзине
 
 
@@ -61,4 +63,5 @@ public class App {
 
     }
 }
+
 
