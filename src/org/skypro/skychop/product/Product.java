@@ -1,8 +1,10 @@
 package org.skypro.skychop.product;
 
+import org.skypro.skychop.search.Searchable;
+
 import java.util.Objects;
 
-public abstract class Product {
+public abstract class Product implements Searchable {
 
     final String nameProduct;
 

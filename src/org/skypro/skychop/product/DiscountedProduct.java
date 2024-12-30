@@ -28,5 +28,18 @@ public class DiscountedProduct extends Product {
     public String toString() {
         return nameProduct + " : " + basePrice + " рублей : скидка " + percentageDiscount + " %  ";
     }
+
+    public String searchTerm() {
+        return toString() + " : " + typeContent();
+    }
+
+    public String typeContent() {
+        return "PRODUCT";
+    }
+
+    public String getStringRepresentation() {
+        return getNameProduct() + " : " + typeContent();
+    }
+
 }
 

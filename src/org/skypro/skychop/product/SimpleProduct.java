@@ -27,4 +27,18 @@ public class SimpleProduct extends Product {
     public String toString() {
         return nameProduct + " : " + priceOfProduct + " рублей";
     }
+
+    public String searchTerm() {
+        return toString() + " : " + typeContent();
+    }
+
+    public String typeContent() {
+        return "PRODUCT";
+    }
+
+    public String getStringRepresentation() {
+        return getNameProduct() + " : " + typeContent();
+    }
+
+
 }
