@@ -3,8 +3,8 @@ package org.skypro.skychop.article;
 import org.skypro.skychop.search.Searchable;
 
 public class Article implements Searchable {
-    private String article;
-    private String text;
+    final String article;
+    final String text;
 
     public Article(String article, String text){
         this.article = article;
@@ -15,16 +15,9 @@ public class Article implements Searchable {
         return article;
     }
 
-    public void setArticle(String article) {
-        this.article = article;
-    }
 
     public String getText() {
         return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 
     @Override
