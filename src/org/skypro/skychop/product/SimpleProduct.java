@@ -29,15 +29,17 @@ public class SimpleProduct extends Product {
     }
 
     public String searchTerm() {
-        return toString() + " : " + typeContent();
+        return getNameProduct() + " : " + searchContent();
     }
 
-    public String typeContent() {
+    @Override
+    public String searchContent() {
         return "PRODUCT";
     }
 
+
     public String getStringRepresentation() {
-        return getNameProduct() + " : " + typeContent();
+        return getNameProduct() + " : " + searchContent();
     }
 
 

@@ -3,9 +3,9 @@ package org.skypro.skychop.search;
 public interface Searchable {
     String searchTerm();
 
-    String typeContent();
+    String searchContent();
 
     default String getStringRepresentation(){
-        return "Searchable - Searchable\n";
+        return searchTerm() + " - " + searchContent();
     }
 }
