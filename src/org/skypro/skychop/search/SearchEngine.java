@@ -8,18 +8,19 @@ public class SearchEngine {
         searchables = new Searchable[quantity];
     }
 
-    public String[] search(String searchTerm) {
-        String[] results = new String[5];
+    public Searchable[] search(String searchTerm) {
+        Searchable[] results = new Searchable[5];
         int CountResult = 0;
         for (int i = 0; i < Count; i++) {
-            if (searchables[i].searchTerm().contains(searchTerm)) {
-                results[CountResult++] = searchables[i].getStringRepresentation();
+            if (searchables[i].getSearchTerm().contains(searchTerm)) {
+                results[CountResult++] = searchables[i];
             }
             if (CountResult == 5) break;
 
         }
         return results;
     }
+
     public void add(Searchable searchable) {
         searchables[Count++] = searchable;
     }

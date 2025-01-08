@@ -28,19 +28,5 @@ public class SimpleProduct extends Product {
         return nameProduct + " : " + priceOfProduct + " рублей";
     }
 
-    public String searchTerm() {
-        return getNameProduct() + " : " + searchContent();
-    }
-
-    @Override
-    public String searchContent() {
-        return "PRODUCT";
-    }
-
-
-    public String getStringRepresentation() {
-        return getNameProduct() + " : " + searchContent();
-    }
-
 
 }

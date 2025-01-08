@@ -11,7 +11,7 @@ public class DiscountedProduct extends Product {
     }
 
     public DiscountedProduct() {
-        this(" ",0,0);
+        this(" ", 0, 0);
     }
 
     @Override
@@ -27,19 +27,6 @@ public class DiscountedProduct extends Product {
     @Override
     public String toString() {
         return nameProduct + " : " + basePrice + " рублей : скидка " + percentageDiscount + " %  ";
-    }
-
-    public String searchTerm() {
-        return getNameProduct() + " : " + searchContent();
-    }
-
-    @Override
-    public String searchContent() {
-        return "PRODUCT";
-    }
-
-        public String getStringRepresentation() {
-        return getNameProduct() + " : " + searchContent();
     }
 
 }

@@ -6,6 +6,7 @@ import org.skypro.skychop.product.DiscountedProduct;
 import org.skypro.skychop.product.FixPriceProduct;
 import org.skypro.skychop.product.SimpleProduct;
 import org.skypro.skychop.search.SearchEngine;
+import org.skypro.skychop.search.Searchable;
 
 public class App {
 
@@ -36,8 +37,6 @@ public class App {
                 ProductBasket.addProduct(product6);
 
 
-
-
                 System.out.println("=================================");
                 ProductBasket.addProduct(new SimpleProduct());//Проверка на возможность добавить продукт
                 System.out.println("=================================");
@@ -59,7 +58,7 @@ public class App {
                 System.out.println("Итого: " + ProductBasket.totalPriceOfProduct() + " рублей.");//Стоимость пустой корзины
                 System.out.println(ProductBasket.isHasProduct("колбаса"));//Поиск товара в пустой корзине
                 System.out.println("=================================");
-                System.out.println( "Поиск по признаку");
+                System.out.println("Поиск по признаку");
 
 
                 SearchEngine searchEngine = new SearchEngine(10);
@@ -80,22 +79,22 @@ public class App {
                 searchEngine.add(article3);
                 searchEngine.add(article4);
 
-                String[] searchResults = searchEngine.search("PRODUCT");
-                for (String result : searchResults) {
+                Searchable[] searchResults = searchEngine.search("PRODUCT");
+                for (Searchable result : searchResults) {
                     if (result == null) continue;
                     System.out.println(result);
                 }
                 System.out.println();
 
                 searchResults = searchEngine.search("ARTICLE");
-                for (String result : searchResults) {
+                for (Searchable result : searchResults) {
                     if (result == null) continue;
                     System.out.println(result);
                 }
                 System.out.println();
 
                 searchResults = searchEngine.search("колбаса");
-                for (String result : searchResults) {
+                for (Searchable result : searchResults) {
                     if (result == null) continue;
                     System.out.println(result);
                 }

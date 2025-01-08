@@ -27,18 +27,5 @@ public class FixPriceProduct extends Product {
         return nameProduct + " : фиксированная цена " + FIX_PRICE_PRODUCT + " рублей";
     }
 
-    public String searchTerm() {
-        return getNameProduct() + " : " + searchContent();
-    }
 
-    @Override
-    public String searchContent() {
-        return "PRODUCT";
-    }
-
-
-
-    public String getStringRepresentation() {
-        return getNameProduct() + " : " + searchContent();
-    }
 }

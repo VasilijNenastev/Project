@@ -48,6 +48,20 @@ public abstract class Product implements Searchable {
     public int hashCode() {
         return Objects.hashCode(nameProduct);
     }
+
+    public String getSearchTerm() {
+        return getNameProduct() + " : " + getSearchContent();
+    }
+
+    @Override
+    public String getSearchContent() {
+        return "PRODUCT";
+    }
+
+
+    public String getStringRepresentation() {
+        return getNameProduct() + " : " + getSearchContent();
+    }
 }
 
 

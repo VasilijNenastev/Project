@@ -3,10 +3,10 @@ package org.skypro.skychop.article;
 import org.skypro.skychop.search.Searchable;
 
 public class Article implements Searchable {
-    final String article;
-    final String text;
+    private final String article;
+    private final String text;
 
-    public Article(String article, String text){
+    public Article(String article, String text) {
         this.article = article;
         this.text = text;
     }
@@ -22,16 +22,16 @@ public class Article implements Searchable {
 
     @Override
     public String toString() {
-        return  article + '\n' + text ;
+        return article + '\n' + text;
     }
 
     @Override
-    public String searchTerm() {
-        return toString() + "\nТип - ARTICLE\n";
+    public String getSearchTerm() {
+        return article + "\nТип - ARTICLE\n";
     }
 
     @Override
-    public String typeContent() {
+    public String getSearchContent() {
         return "ARTICLE\n";
     }
 
