@@ -8,7 +8,7 @@ public class FixPriceProduct extends Product {
     }
 
     public FixPriceProduct() {
-        this(" ");
+        this("f");
     }
 
 

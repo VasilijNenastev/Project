@@ -2,6 +2,10 @@ package org.skypro.skychop;
 
 import org.skypro.skychop.article.Article;
 import org.skypro.skychop.basket.ProductBasket;
+import org.skypro.skychop.exception.BestResultNotFoundException;
+import org.skypro.skychop.exception.DiscountedException;
+import org.skypro.skychop.exception.NameException;
+import org.skypro.skychop.exception.PriceException;
 import org.skypro.skychop.product.DiscountedProduct;
 import org.skypro.skychop.product.FixPriceProduct;
 import org.skypro.skychop.product.SimpleProduct;
@@ -20,11 +24,11 @@ public class App {
         public static void main(String[] args) {
 
 
-            {
+            try {
                 SimpleProduct product1 = new SimpleProduct("сахар", 350);
-                DiscountedProduct product2 = new DiscountedProduct("молоко", 200, 20);
+                DiscountedProduct product2 = new DiscountedProduct("молоко", 200, 11);
                 FixPriceProduct product3 = new FixPriceProduct("кофе");
-                SimpleProduct product4 = new SimpleProduct("конфеты", 700);
+                SimpleProduct product4 = new SimpleProduct("конфеты", 500);
                 SimpleProduct product5 = new SimpleProduct("колбаса", 600);
                 SimpleProduct product6 = new SimpleProduct("мясо", 2000);
 
@@ -59,6 +63,7 @@ public class App {
                 System.out.println(ProductBasket.isHasProduct("колбаса"));//Поиск товара в пустой корзине
                 System.out.println("=================================");
                 System.out.println("Поиск по признаку");
+                System.out.println();
 
 
                 SearchEngine searchEngine = new SearchEngine(10);
@@ -78,6 +83,7 @@ public class App {
                 searchEngine.add(article2);
                 searchEngine.add(article3);
                 searchEngine.add(article4);
+
 
                 Searchable[] searchResults = searchEngine.search("PRODUCT");
                 for (Searchable result : searchResults) {
@@ -100,6 +106,21 @@ public class App {
                 }
                 System.out.println();
 
+                System.out.println("=================================");
+                System.out.println("Поиск объекта по совпадению");
+
+                System.out.println(searchEngine.getMaximumMatchQuery("сах"));
+                System.out.println(searchEngine.getMaximumMatchQuery("кеф"));
+
+
+            } catch (NameException e) {// для проверки изменить наименование продукта в массиве/
+                System.out.println(" Наименование продукта не может быть пустым!!!");
+            } catch (PriceException e) {//Для проверки изменить цену продукта в массиве/
+                System.out.println(" Цена продукта не может быть менее или равна 0 рублей !!!");
+            } catch (DiscountedException e) {
+                System.out.println(" Скидка не может быть менее 0% и более 100% !!!");
+            } catch (BestResultNotFoundException e) {
+                System.out.println(e.getMessage());
 
             }
 

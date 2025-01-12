@@ -1,15 +1,20 @@
 package org.skypro.skychop.product;
 
+import org.skypro.skychop.exception.PriceException;
+
 public class SimpleProduct extends Product {
     final int priceOfProduct;
 
     public SimpleProduct(String nameProduct, int priceOfProduct) {
+        if (priceOfProduct <= 0) {
+            throw new PriceException();
+        }
         super(nameProduct);
         this.priceOfProduct = priceOfProduct;
     }
 
     public SimpleProduct() {
-        this("", 0);
+        this("f", 1);
 
     }
 

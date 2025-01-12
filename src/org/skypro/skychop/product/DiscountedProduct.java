@@ -1,17 +1,27 @@
 package org.skypro.skychop.product;
 
+import org.skypro.skychop.exception.BestResultNotFoundException;
+import org.skypro.skychop.exception.DiscountedException;
+import org.skypro.skychop.exception.PriceException;
+
 public class DiscountedProduct extends Product {
     public int basePrice;
     public int percentageDiscount;
 
     public DiscountedProduct(String nameProduct, int basePrice, int percentageDiscount) {
-        super(nameProduct);
+        if (basePrice < 0) {
+            throw new PriceException();
+        }
+        if (percentageDiscount < 0 || percentageDiscount > 100){
+            throw new DiscountedException();
+        }
+            super(nameProduct);
         this.basePrice = basePrice;
         this.percentageDiscount = percentageDiscount;
     }
 
     public DiscountedProduct() {
-        this(" ", 0, 0);
+        this("f", 1, 0);
     }
 
     @Override
