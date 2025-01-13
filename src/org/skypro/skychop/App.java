@@ -117,7 +117,7 @@ public class App {
                 System.out.println(" Наименование продукта не может быть пустым!!!");
             } catch (PriceException e) {//Для проверки изменить цену продукта в массиве/
                 System.out.println(" Цена продукта не может быть менее или равна 0 рублей !!!");
-            } catch (DiscountedException e) {
+            } catch (DiscountedException e) {//Для проверки изменить скидку на продукт в массиве/
                 System.out.println(" Скидка не может быть менее 0% и более 100% !!!");
             } catch (BestResultNotFoundException e) {
                 System.out.println(e.getMessage());

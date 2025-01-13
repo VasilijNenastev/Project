@@ -9,13 +9,14 @@ public class DiscountedProduct extends Product {
     public int percentageDiscount;
 
     public DiscountedProduct(String nameProduct, int basePrice, int percentageDiscount) {
+        super(nameProduct);
         if (basePrice < 0) {
             throw new PriceException();
         }
         if (percentageDiscount < 0 || percentageDiscount > 100){
             throw new DiscountedException();
         }
-            super(nameProduct);
+
         this.basePrice = basePrice;
         this.percentageDiscount = percentageDiscount;
     }

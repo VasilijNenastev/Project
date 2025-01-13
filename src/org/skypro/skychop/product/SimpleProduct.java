@@ -6,10 +6,11 @@ public class SimpleProduct extends Product {
     final int priceOfProduct;
 
     public SimpleProduct(String nameProduct, int priceOfProduct) {
+        super(nameProduct);
         if (priceOfProduct <= 0) {
             throw new PriceException();
         }
-        super(nameProduct);
+
         this.priceOfProduct = priceOfProduct;
     }
 
