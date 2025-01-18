@@ -12,6 +12,10 @@ import org.skypro.skychop.product.SimpleProduct;
 import org.skypro.skychop.search.SearchEngine;
 import org.skypro.skychop.search.Searchable;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class App {
 
 
@@ -25,12 +29,13 @@ public class App {
 
 
             try {
-                SimpleProduct product1 = new SimpleProduct("сахар", 350);
+                SimpleProduct product1 = new SimpleProduct("сахар", 700);
                 DiscountedProduct product2 = new DiscountedProduct("молоко", 200, 11);
                 FixPriceProduct product3 = new FixPriceProduct("кофе");
                 SimpleProduct product4 = new SimpleProduct("конфеты", 500);
                 SimpleProduct product5 = new SimpleProduct("колбаса", 600);
                 SimpleProduct product6 = new SimpleProduct("мясо", 2000);
+                SimpleProduct product7 = new SimpleProduct("молоко", 200);
 
                 ProductBasket productBasket = new ProductBasket();
                 ProductBasket.addProduct(product1);
@@ -39,12 +44,9 @@ public class App {
                 ProductBasket.addProduct(product4);
                 ProductBasket.addProduct(product5);
                 ProductBasket.addProduct(product6);
+                ProductBasket.addProduct(product7);
 
 
-                System.out.println("=================================");
-                ProductBasket.addProduct(new SimpleProduct());//Проверка на возможность добавить продукт
-                System.out.println("=================================");
-                ProductBasket.basketEmpty();//Проверка не пуста ли корзина
                 System.out.println("=================================");
                 System.out.println("В корзине:");//Печать товара в корзине
                 ProductBasket.printAllProductBasket();
@@ -55,24 +57,48 @@ public class App {
                 System.out.println("колла - " + ProductBasket.isHasProduct("колла"));
                 System.out.println("колбаса - " + ProductBasket.isHasProduct("колбаса"));
                 System.out.println("=================================");
+
+
+                System.out.println(" Удаление продукта по названию");
+                System.out.println("----------------------------------");
+
+                List removedProducts = productBasket.removeProduct("мясо");
+                List removedProductsTry = productBasket.removeProduct("торт");
+
+                System.out.println("Удаленные товары: " + removedProducts);
+                if (removedProductsTry.isEmpty()) {
+                    System.out.println("Не существующие удаленные товары: список пуст");
+                } else {
+                    productBasket.printAllProductBasket();
+                }
+                System.out.println("Удаленные товары: " + removedProductsTry);
+                System.out.println("----------------------------------");
+                System.out.println("В корзине:");
+                ProductBasket.printAllProductBasket();
+                System.out.println("Итого:" + ProductBasket.totalPriceOfProduct() + " рублей.");
+                System.out.println("=================================");
+                System.out.println("Удаление всех продуктов из корзины.");
                 ProductBasket.deleteBasket();//Удаление продуктов из корзины
                 System.out.println("В корзине:");
-                ProductBasket.basketEmpty();
+                // ProductBasket.basketEmpty();
                 ProductBasket.printAllProductBasket();
                 System.out.println("Итого: " + ProductBasket.totalPriceOfProduct() + " рублей.");//Стоимость пустой корзины
+                System.out.println("Поиск товара в пустой корзине по названию продукта:");
                 System.out.println(ProductBasket.isHasProduct("колбаса"));//Поиск товара в пустой корзине
                 System.out.println("=================================");
+
                 System.out.println("Поиск по признаку");
                 System.out.println();
 
 
-                SearchEngine searchEngine = new SearchEngine(10);
+                SearchEngine searchEngine = new SearchEngine();
                 searchEngine.add(product1);
                 searchEngine.add(product2);
                 searchEngine.add(product3);
                 searchEngine.add(product4);
                 searchEngine.add(product5);
                 searchEngine.add(product6);
+                searchEngine.add(product7);
 
                 Article article1 = new Article("Название статьи 1", "Текст статьи 1");
                 Article article2 = new Article("Название статьи 2", "Текст статьи 2");
@@ -85,7 +111,7 @@ public class App {
                 searchEngine.add(article4);
 
 
-                Searchable[] searchResults = searchEngine.search("PRODUCT");
+                ArrayList<Searchable> searchResults = searchEngine.search("PRODUCT");
                 for (Searchable result : searchResults) {
                     if (result == null) continue;
                     System.out.println(result);

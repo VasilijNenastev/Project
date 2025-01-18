@@ -2,35 +2,33 @@ package org.skypro.skychop.search;
 
 import org.skypro.skychop.exception.BestResultNotFoundException;
 
-public class SearchEngine {
-    Searchable[] searchables;
-    int Count = 0;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
-    public SearchEngine(int quantity) {
-        searchables = new Searchable[quantity];
+public class SearchEngine {
+    LinkedList<Searchable> searchables;
+
+    public SearchEngine() {
+        searchables = new LinkedList<>();
     }
 
-    public Searchable[] search(String searchTerm) {
-        Searchable[] results = new Searchable[5];
-        int CountResult = 0;
-        for (int i = 0; i < Count; i++) {
-            if (searchables[i].getSearchTerm().contains(searchTerm)) {
-                results[CountResult++] = searchables[i];
+    public ArrayList<Searchable> search(String searchTerm) {
+        ArrayList<Searchable> results = new ArrayList<>();
+        for (Searchable searchable : searchables) {
+            if (searchable.getSearchTerm().contains(searchTerm)) {
+                results.add(searchable);
             }
-            if (CountResult == 5) break;
-
         }
         return results;
     }
 
     public void add(Searchable searchable) {
-        searchables[Count++] = searchable;
+        searchables.add(searchable);
     }
 
     public Searchable getMaximumMatchQuery(String search) throws BestResultNotFoundException {
         Searchable Match = null;
         int Count = 0;
-
         for (Searchable searchable : searchables) {
             int Count1 = countSubstrings(searchable.toString(), search);
             if (Count1 > Count) {
@@ -38,8 +36,7 @@ public class SearchEngine {
                 Match = searchable;
             }
         }
-
-        if(Match == null) throw new BestResultNotFoundException("Для запроса " + search + "  нет совпадения !!!");
+        if (Match == null) throw new BestResultNotFoundException("Для запроса " + search + "  нет совпадения !!!");
         return Match;
     }
 
@@ -47,17 +44,14 @@ public class SearchEngine {
         if (str == null || substring == null || substring.isEmpty()) {
             return 0;
         }
-
         int count = 0;
         int index = 0;
         int subIndex = str.indexOf(substring, index);
-
         while (subIndex != -1) {
             count++;
             index = index + substring.length();
             subIndex = str.indexOf(substring, index);
         }
-
         return count;
     }
 
