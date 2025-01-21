@@ -8,7 +8,7 @@ public class FixPriceProduct extends Product {
     }
 
     public FixPriceProduct() {
-        this(" ");
+        this("f");
     }
 
 
@@ -26,4 +26,6 @@ public class FixPriceProduct extends Product {
     public String toString() {
         return nameProduct + " : фиксированная цена " + FIX_PRICE_PRODUCT + " рублей";
     }
+
+
 }
