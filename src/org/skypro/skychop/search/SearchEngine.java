@@ -3,7 +3,9 @@ package org.skypro.skychop.search;
 import org.skypro.skychop.exception.BestResultNotFoundException;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 public class SearchEngine {
     LinkedList<Searchable> searchables;
@@ -12,11 +14,11 @@ public class SearchEngine {
         searchables = new LinkedList<>();
     }
 
-    public ArrayList<Searchable> search(String searchTerm) {
-        ArrayList<Searchable> results = new ArrayList<>();
+    public Map<String,Searchable> search(String searchTerm) {
+        Map<String,Searchable> results = new LinkedHashMap<>();
         for (Searchable searchable : searchables) {
             if (searchable.getSearchTerm().contains(searchTerm)) {
-                results.add(searchable);
+                results.putIfAbsent(searchable.getStringRepresentation(), searchable);
             }
         }
         return results;

@@ -12,8 +12,8 @@ import org.skypro.skychop.product.SimpleProduct;
 import org.skypro.skychop.search.SearchEngine;
 import org.skypro.skychop.search.Searchable;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class App {
@@ -57,21 +57,18 @@ public class App {
                 System.out.println("колла - " + ProductBasket.isHasProduct("колла"));
                 System.out.println("колбаса - " + ProductBasket.isHasProduct("колбаса"));
                 System.out.println("=================================");
-
-
                 System.out.println(" Удаление продукта по названию");
                 System.out.println("----------------------------------");
 
-                List removedProducts = productBasket.removeProduct("мясо");
-                List removedProductsTry = productBasket.removeProduct("торт");
+                List removedProducts = ProductBasket.removeProduct("мясо");
+                List removedProductsTry = ProductBasket.removeProduct("торт");
 
                 System.out.println("Удаленные товары: " + removedProducts);
                 if (removedProductsTry.isEmpty()) {
-                    System.out.println("Не существующие удаленные товары: список пуст");
+                    System.out.println("Не существующие удаленные товары: " + removedProductsTry + " список пуст.");
                 } else {
-                    productBasket.printAllProductBasket();
+                    ProductBasket.printAllProductBasket();
                 }
-                System.out.println("Удаленные товары: " + removedProductsTry);
                 System.out.println("----------------------------------");
                 System.out.println("В корзине:");
                 ProductBasket.printAllProductBasket();
@@ -80,15 +77,13 @@ public class App {
                 System.out.println("Удаление всех продуктов из корзины.");
                 ProductBasket.deleteBasket();//Удаление продуктов из корзины
                 System.out.println("В корзине:");
-                // ProductBasket.basketEmpty();
                 ProductBasket.printAllProductBasket();
                 System.out.println("Итого: " + ProductBasket.totalPriceOfProduct() + " рублей.");//Стоимость пустой корзины
                 System.out.println("Поиск товара в пустой корзине по названию продукта:");
                 System.out.println(ProductBasket.isHasProduct("колбаса"));//Поиск товара в пустой корзине
                 System.out.println("=================================");
-
                 System.out.println("Поиск по признаку");
-                System.out.println();
+                System.out.println("__________________________________");
 
 
                 SearchEngine searchEngine = new SearchEngine();
@@ -111,27 +106,24 @@ public class App {
                 searchEngine.add(article4);
 
 
-                ArrayList<Searchable> searchResults = searchEngine.search("PRODUCT");
-                for (Searchable result : searchResults) {
+                Map<String, Searchable> searchResults = searchEngine.search("PRODUCT");
+                for (Map.Entry<String, Searchable> result : searchResults.entrySet()) {
                     if (result == null) continue;
                     System.out.println(result);
                 }
-                System.out.println();
+                System.out.println("__________________________________");
 
                 searchResults = searchEngine.search("ARTICLE");
-                for (Searchable result : searchResults) {
+                for (Map.Entry<String, Searchable> result : searchResults.entrySet()) {
                     if (result == null) continue;
                     System.out.println(result);
                 }
-                System.out.println();
-
+                System.out.println("__________________________________");
                 searchResults = searchEngine.search("колбаса");
-                for (Searchable result : searchResults) {
+                for (Map.Entry<String, Searchable> result : searchResults.entrySet()) {
                     if (result == null) continue;
                     System.out.println(result);
                 }
-                System.out.println();
-
                 System.out.println("=================================");
                 System.out.println("Поиск объекта по совпадению");
 
