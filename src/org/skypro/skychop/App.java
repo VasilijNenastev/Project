@@ -12,6 +12,7 @@ import org.skypro.skychop.product.SimpleProduct;
 import org.skypro.skychop.search.SearchEngine;
 import org.skypro.skychop.search.Searchable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -35,9 +36,9 @@ public class App {
                 SimpleProduct product4 = new SimpleProduct("конфеты", 500);
                 SimpleProduct product5 = new SimpleProduct("колбаса", 600);
                 SimpleProduct product6 = new SimpleProduct("мясо", 2000);
-                SimpleProduct product7 = new SimpleProduct("молоко", 200);
+                SimpleProduct product7 = new SimpleProduct("молоко", 300);
 
-                ProductBasket productBasket = new ProductBasket();
+                ProductBasket productBasket  = new ProductBasket();
                 ProductBasket.addProduct(product1);
                 ProductBasket.addProduct(product2);
                 ProductBasket.addProduct(product3);
@@ -106,8 +107,8 @@ public class App {
                 searchEngine.add(article4);
 
 
-                Map<String, Searchable> searchResults = searchEngine.search("PRODUCT");
-                for (Map.Entry<String, Searchable> result : searchResults.entrySet()) {
+                Map<String,Searchable> searchResults =  searchEngine.search("PRODUCT");
+                for (Map.Entry<String,Searchable> result : searchResults.entrySet()) {
                     if (result == null) continue;
                     System.out.println(result);
                 }
@@ -119,7 +120,7 @@ public class App {
                     System.out.println(result);
                 }
                 System.out.println("__________________________________");
-                searchResults = searchEngine.search("колбаса");
+                searchResults =  searchEngine.search("колбаса");
                 for (Map.Entry<String, Searchable> result : searchResults.entrySet()) {
                     if (result == null) continue;
                     System.out.println(result);
