@@ -25,24 +25,25 @@ public class ProductBasket {
                 printProduct.append(product).append("\n");
                 if (product.isSpecial()) CountSpecial++;
             }
-        }System.out.print(printProduct);
+        }
+        System.out.print(printProduct);
         if (CountSpecial != 0) {
-        System.out.println("Специальных товаров: " + CountSpecial);
+            System.out.println("Специальных товаров: " + CountSpecial);
         }
         if (printProduct.isEmpty()) {
-        System.out.println(" Корзина пуста");
+            System.out.println(" Корзина пуста");
         }
 
     }
-
 
 
     public static int totalPriceOfProduct() {
         if (products.isEmpty()) return 0;
         int sum = 0;
         for (LinkedList<Product> product : products.values()) {
+            for (Product product1 : product)
+                sum += product1.getPriceOfProduct();
 
-            sum += product.getFirst().getPriceOfProduct();
         }
         return sum;
     }
@@ -60,6 +61,18 @@ public class ProductBasket {
         if (products.isEmpty() || !products.containsKey(name)) return new ArrayList<Product>();
         LinkedList<Product> removedProducts = products.remove(name);
         return removedProducts;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductBasket that = (ProductBasket) o;
+        return Objects.equals(products, that.products);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(products);
     }
 }
 
