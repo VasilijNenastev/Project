@@ -2,6 +2,8 @@ package org.skypro.skychop.article;
 
 import org.skypro.skychop.search.Searchable;
 
+import java.util.Objects;
+
 public class Article implements Searchable {
     private final String article;
     private final String text;
@@ -40,5 +42,16 @@ public class Article implements Searchable {
         return article + "\nТип - ARTICLE";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Article article1 = (Article) o;
+        return Objects.equals(article, article1.article) && Objects.equals(text, article1.text);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(article, text);
+    }
 }
