@@ -12,9 +12,8 @@ import org.skypro.skychop.product.SimpleProduct;
 import org.skypro.skychop.search.SearchEngine;
 import org.skypro.skychop.search.Searchable;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 
 public class App {
@@ -38,7 +37,7 @@ public class App {
                 SimpleProduct product6 = new SimpleProduct("мясо", 2000);
                 SimpleProduct product7 = new SimpleProduct("молоко", 300);
 
-                ProductBasket productBasket  = new ProductBasket();
+                ProductBasket productBasket = new ProductBasket();
                 ProductBasket.addProduct(product1);
                 ProductBasket.addProduct(product2);
                 ProductBasket.addProduct(product3);
@@ -107,21 +106,21 @@ public class App {
                 searchEngine.add(article4);
 
 
-                Map<String,Searchable> searchResults =  searchEngine.search("PRODUCT");
-                for (Map.Entry<String,Searchable> result : searchResults.entrySet()) {
+                Set<Searchable> searchResults = searchEngine.search("PRODUCT");
+                for (Searchable result : searchResults) {
                     if (result == null) continue;
                     System.out.println(result);
                 }
                 System.out.println("__________________________________");
 
                 searchResults = searchEngine.search("ARTICLE");
-                for (Map.Entry<String, Searchable> result : searchResults.entrySet()) {
+                for (Searchable result : searchResults) {
                     if (result == null) continue;
                     System.out.println(result);
                 }
                 System.out.println("__________________________________");
-                searchResults =  searchEngine.search("колбаса");
-                for (Map.Entry<String, Searchable> result : searchResults.entrySet()) {
+                searchResults = searchEngine.search("колбаса");
+                for (Searchable result : searchResults) {
                     if (result == null) continue;
                     System.out.println(result);
                 }

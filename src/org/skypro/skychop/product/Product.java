@@ -10,9 +10,9 @@ public abstract class Product implements Searchable {
     final String nameProduct;
 
     public Product(String nameProduct) {
-        if (nameProduct == null || nameProduct.equals("") || nameProduct.isBlank()){
+        if (nameProduct == null || nameProduct.equals("") || nameProduct.isBlank()) {
 
-          throw new NameException();
+            throw new NameException();
 
         }
 
