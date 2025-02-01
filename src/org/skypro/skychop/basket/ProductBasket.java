@@ -19,13 +19,12 @@ public class ProductBasket {
 
     public static void printAllProductBasket() {
         StringBuilder printProduct = new StringBuilder();
-        int CountSpecial = 0;
-        for (Map.Entry<String, LinkedList<Product>> entry : products.entrySet()) {
-            for (Product product : entry.getValue()) {
-                printProduct.append(product).append("\n");
-                if (product.isSpecial()) CountSpecial++;
-            }
-        }
+        products.values().stream().flatMap(Collection::stream)
+                .forEach(product -> printProduct.append(product).append("\n"));
+        int CountSpecial = (int)
+                products.values().stream().flatMap(Collection::stream)
+                        .filter(Product::isSpecial).count();
+
         System.out.print(printProduct);
         if (CountSpecial != 0) {
             System.out.println("Специальных товаров: " + CountSpecial);
@@ -38,14 +37,10 @@ public class ProductBasket {
 
 
     public static int totalPriceOfProduct() {
-        if (products.isEmpty()) return 0;
-        int sum = 0;
-        for (LinkedList<Product> product : products.values()) {
-            for (Product product1 : product)
-                sum += product1.getPriceOfProduct();
+        return
+                products.values().stream().flatMap(Collection::stream)
+                        .mapToInt(Product::getPriceOfProduct).sum();
 
-        }
-        return sum;
     }
 
     public static boolean isHasProduct(String name) {
@@ -70,6 +65,7 @@ public class ProductBasket {
         ProductBasket that = (ProductBasket) o;
         return Objects.equals(products, that.products);
     }
+
     @Override
     public int hashCode() {
         return Objects.hashCode(products);

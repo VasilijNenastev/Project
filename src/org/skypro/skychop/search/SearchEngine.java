@@ -6,6 +6,7 @@ import org.skypro.skychop.exception.BestResultNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class SearchEngine {
     Set<Searchable> searchables;
@@ -15,13 +16,8 @@ public class SearchEngine {
     }
 
     public Set<Searchable> search(String searchTerm) {
-        Set<Searchable> results = new TreeSet<>(new NameComparator());
-        for (Searchable searchable : searchables) {
-            if (searchable.getSearchTerm().contains(searchTerm)) {
-                results.add(searchable);
-            }
-        }
-        return results;
+        return searchables.stream().filter(searchable -> searchable.getSearchTerm().contains(searchTerm))
+                .collect(Collectors.toCollection(()-> new TreeSet<>(new NameComparator())));
     }
 
     public void add(Searchable searchable) {
