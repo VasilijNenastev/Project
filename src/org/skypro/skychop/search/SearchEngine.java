@@ -1,27 +1,23 @@
 package org.skypro.skychop.search;
 
+import org.skypro.skychop.comparator.NameComparator;
 import org.skypro.skychop.exception.BestResultNotFoundException;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class SearchEngine {
-    LinkedList<Searchable> searchables;
+    Set<Searchable> searchables;
 
     public SearchEngine() {
-        searchables = new LinkedList<>();
+        searchables = new HashSet<>();
     }
 
-    public Map<String,Searchable> search(String searchTerm) {
-        Map<String,Searchable> results = new LinkedHashMap<>();
-        for (Searchable searchable : searchables) {
-            if (searchable.getSearchTerm().contains(searchTerm)) {
-                results.putIfAbsent(searchable.getStringRepresentation(), searchable);
-            }
-        }
-        return results;
+    public Set<Searchable> search(String searchTerm) {
+        return searchables.stream().filter(searchable -> searchable.getSearchTerm().contains(searchTerm))
+                .collect(Collectors.toCollection(()-> new TreeSet<>(new NameComparator())));
     }
 
     public void add(Searchable searchable) {
